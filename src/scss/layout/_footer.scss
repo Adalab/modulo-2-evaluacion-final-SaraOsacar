@@ -4,8 +4,13 @@
     flex-direction: column;
     justify-content: center;
     height: 10vh;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+
     &__paragraph {
     color: white;
     text-align: center; 
+   
 }
 }
