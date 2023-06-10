@@ -1,0 +1,11 @@
+.footer {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10vh;
+    &__paragraph {
+    color: white;
+    text-align: center; 
+}
+}
