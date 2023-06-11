@@ -1,12 +1,11 @@
 'use strict';
 
-//Query Selector
-
+// Query Selector
+const charactersList = document.querySelector('.js_listCharacters');
+const urlCharacters = `https://api.disneyapi.dev/character?page=50`;
 const input = document.querySelector('.js_descSearch');
 const btnSearch = document.querySelector('.js_btnSearch');
-const charactersUl = document.querySelector('.js_listCharacters');
 const favourites = document.querySelector('.js_listFavourites');
-const urlCharacters = 'https://api.disneyapi.dev/character?pageSize=50';
 
 let listCharactersData = [];
 
@@ -14,23 +13,27 @@ let listCharactersData = [];
 // 1.Fetch para obtener información del servidor
 fetch(urlCharacters)
   .then((response) => response.json())
-  .then((data)=> {
+  .then((data) => {
     console.log(data);
-    listCharactersData = data.characters;
-    console.log(listCharactersData);
+    listCharactersData = data.data; //listCharacterData guarda todo el listado de personajes
     renderListCharacters(listCharactersData);
-
   });
-//2. Crear función que renderiza el listado + bucle para recorrer el array de personajes
-function renderListCharacters(listData) {
-  charactersUl.innerHTML = '';
-  for(const character of listData) {
-    charactersUl.innerHTML += renderCharacter(character);
 
+
+//2. Crear función que renderiza el listado + bucle para recorrer el array de personajes y pintarlo en HTML
+function renderListCharacters (list) {
+  for (const eachCharacter of list ) {
+    charactersList.innerHTML += renderOneCharacter(eachCharacter);
   }
 }
-// 3. Crear función que renderiza un personaje
-function renderCharacter(character) {
-  const html = `<li>${character.name}</li>`;
+
+// 3. Crear función que renderiza un personaje con la info que seleccione
+function renderOneCharacter(dataCharacter) {
+  let html = `<li id="${dataCharacter.__id}">
+                <article>
+                <img src="${dataCharacter.imageUrl}" alt=${dataCharacter.name}/>
+                <p js_name">${dataCharacter.name}</p>
+                </article>
+            </li>`;
   return html;
 }
