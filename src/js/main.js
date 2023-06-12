@@ -10,6 +10,18 @@ const favourites = document.querySelector('.js_listFavourites');
 let listCharactersData = [];
 let listFavouritesCharacters = [];
 
+//Creo variable LocalStorage
+const favStorage = JSON.parse(localStorage.getItem('charactersFavourites'));
+
+//
+function getFavStorage() {
+  if (favStorage) {
+    listFavouritesCharacters = favStorage;
+    renderFavouriteCards(listFavouritesCharacters);
+  }
+}
+getFavStorage();
+
 // 1.Fetch para obtener información del servidor
 fetch(urlCharacters)
   .then((response) => response.json())
@@ -42,7 +54,7 @@ function renderOneCharacter(dataCharacter) {
     cardImg = defaultImg;
   }
 
-  let html = `<li class="cardEachCharacter" id="${dataCharacter._id}">
+  let html = `<li class="cardEachCharacter" id="${dataCharacter._id}"> 
                 <article>
                 <img src="${cardImg}" alt=${dataCharacter.name}/>
                 <p js_name">${dataCharacter.name}</p>
@@ -78,7 +90,7 @@ function renderFavouriteCards (list) {
 }
 
 
-//6. Convertir la tarjeta en favorita cuando la usuaria hace click
+//6. Handleclick para convertir la tarjeta en favorita cuando la usuaria hace click
 
 function handleClick(event) {
   const id = parseInt(event.currentTarget.id); // id de la carta sobre la que se hace el click y parseInt para convertirlo en número
@@ -93,13 +105,14 @@ function handleClick(event) {
     listFavouritesCharacters.splice(indexCharacter, 1); // elimina coincidencia, si estuviera
 
   }
-  console.log(listFavouritesCharacters)
+  console.log(listFavouritesCharacters);
   favourites.innerHTML= renderFavouriteCards(listFavouritesCharacters);
 
+  // 7. Guardar a los seleccionados favoritos en el LocalStorage y que se mantengan al reiniciar página
+  renderFavouriteCards(listFavouritesCharacters);
+  localStorage.setItem('charactersFavourites', JSON.stringify(listFavouritesCharacters));
 
 }
-
-// 7. Guardar a los seleccionados favoritos en el LocalStorage y que se mantengan al reiniciar página
 
 
 
