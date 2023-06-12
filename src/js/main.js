@@ -10,7 +10,6 @@ const favourites = document.querySelector('.js_listFavourites');
 let listCharactersData = [];
 let listFavouritesCharacters = [];
 
-
 // 1.Fetch para obtener información del servidor
 fetch(urlCharacters)
   .then((response) => response.json())
@@ -28,12 +27,12 @@ function renderListCharacters (list) {
   }
   addEventFavouritesCharacters();
 }
-//renderiza lista de favoritos
-function renderFavoriteCards (list) {
+/*//renderiza lista de favoritos
+function renderFavouriteCards (list) {
   for (const eachCharacter of list ) {
     favourites.innerHTML += renderOneCharacter(eachCharacter);
   }
-}
+}*/
 
 // 3. Crear función que renderiza un personaje del total de la lista con la info que seleccione
 function renderOneCharacter(dataCharacter) {
@@ -43,7 +42,7 @@ function renderOneCharacter(dataCharacter) {
     cardImg = defaultImg;
   }
 
-  let html = `<li id="${dataCharacter.__id}">
+  let html = `<li class="cardEachCharacter" id="${dataCharacter._id}">
                 <article>
                 <img src="${cardImg}" alt=${dataCharacter.name}/>
                 <p js_name">${dataCharacter.name}</p>
@@ -54,10 +53,49 @@ function renderOneCharacter(dataCharacter) {
 
 //4. Generar el evento en cada character
 function addEventFavouritesCharacters () {
-  for(const singleCharacter of charactersList) {
+  const list = document.querySelectorAll('.cardEachCharacter');
+  console.log(list);
+  for(const singleCharacter of list) {
     singleCharacter.addEventListener('click', handleClick);
+
   }
 }
 
+// 5. Función para renderizar los favoritos (atributo gancho id)
 
+function renderFavouriteCards (list) {
+  let html = '';
+  for (const eachCharacter of list ) {
+    html = `<div class="characters-div"></div>
+  <div class="characters js_favourite-card" id="${eachCharacter._id}">
+  <p class="names"> Name:${eachCharacter.name}</p>
+  <img src="${eachCharacter.imageUrl}" alt="${eachCharacter.name}"/>
+  </div>
+  </div>`;
+
+  }
+  return html;
+}
+
+
+//6. Convertir la tarjeta en favorita cuando la usuaria hace click
+
+function handleClick(event) {
+  const id = parseInt(event.currentTarget.id); // id de la carta sobre la que se hace el click y parseInt para convertirlo en número
+  console.log(id);
+  const selectedCard = listCharactersData.find((item) => item._id === id); // de la lista de caracters encuentra el id que coincide con el id de la carta que el usuario ha seleccionado
+  const indexCharacter = listFavouritesCharacters.findIndex((item) => item._id === id); // en la lista de favoritos está el id clickado por el usuario? si no está el resultado sera index -1.
+
+  //añadirlo al listado de favoritos
+  if(indexCharacter === -1) {
+    listFavouritesCharacters.push(selectedCard); // Lo añade si no está en la lista de favoritos
+  } else {
+    listFavouritesCharacters.splice(indexCharacter, 1); // elimina coincidencia, si estuviera
+
+  }
+
+  favourites.innerHTML= renderFavouriteCards(listFavouritesCharacters);
+
+
+}
 
