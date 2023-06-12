@@ -13,7 +13,7 @@ let listFavouritesCharacters = [];
 //Creo variable LocalStorage
 const favStorage = JSON.parse(localStorage.getItem('charactersFavourites'));
 
-//
+// Función con variable LocalStorage. También añado el render en la función handleclick para que almacene los favoritos en los que se ha hecho click al reiniciar
 function getFavStorage() {
   if (favStorage) {
     listFavouritesCharacters = favStorage;
@@ -108,7 +108,7 @@ function handleClick(event) {
   console.log(listFavouritesCharacters);
   favourites.innerHTML= renderFavouriteCards(listFavouritesCharacters);
 
-  // 7. Guardar a los seleccionados favoritos en el LocalStorage y que se mantengan al reiniciar página
+  // 7. Guardar a los seleccionados favoritos en el LocalStorage y que se mantengan al reiniciar página. Al inicio creo constante y función
   renderFavouriteCards(listFavouritesCharacters);
   localStorage.setItem('charactersFavourites', JSON.stringify(listFavouritesCharacters));
 
