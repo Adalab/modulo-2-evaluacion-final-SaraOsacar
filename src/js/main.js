@@ -66,7 +66,7 @@ function addEventFavouritesCharacters () {
 function renderFavouriteCards (list) {
   let html = '';
   for (const eachCharacter of list ) {
-    html = `<div class="characters-div"></div>
+    html += `<div class="characters-div"></div>
   <div class="characters js_favourite-card" id="${eachCharacter._id}">
   <p class="names"> Name:${eachCharacter.name}</p>
   <img src="${eachCharacter.imageUrl}" alt="${eachCharacter.name}"/>
@@ -93,9 +93,13 @@ function handleClick(event) {
     listFavouritesCharacters.splice(indexCharacter, 1); // elimina coincidencia, si estuviera
 
   }
-
+  console.log(listFavouritesCharacters)
   favourites.innerHTML= renderFavouriteCards(listFavouritesCharacters);
 
 
 }
+
+// 7. Guardar a los seleccionados favoritos en el LocalStorage y que se mantengan al reiniciar página
+
+
 
