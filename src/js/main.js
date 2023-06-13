@@ -56,7 +56,7 @@ function renderOneCharacter(dataCharacter) {
 
   let html = `<li class="cardEachCharacter" id="${dataCharacter._id}"> 
                 <article>
-                <img src="${cardImg}" alt=${dataCharacter.name} class="imgCharacters"/>
+                <img src="${cardImg}" alt="${dataCharacter.name}" class="imgCharacters"/>
                 <p js_name">${dataCharacter.name}</p>
                 </article>
             </li>`;
