@@ -56,11 +56,13 @@ function renderOneCharacter(dataCharacter) {
 
   let html = `<li class="cardEachCharacter" id="${dataCharacter._id}"> 
                 <article>
-                <img src="${cardImg}" alt=${dataCharacter.name}/>
+                <img src="${cardImg}" alt=${dataCharacter.name} class="imgCharacters"/>
                 <p js_name">${dataCharacter.name}</p>
                 </article>
             </li>`;
+
   return html;
+ 
 }
 
 //4. Generar el evento en cada character
@@ -78,7 +80,7 @@ function addEventFavouritesCharacters () {
 function renderFavouriteCards (list) {
   let html = '';
   for (const eachCharacter of list ) {
-    html += `<div class="characters-div"></div>
+    html += `<div class="characters-div">
   <div class="characters js_favourite-card" id="${eachCharacter._id}">
   <p class="names"> Name:${eachCharacter.name}</p>
   <img src="${eachCharacter.imageUrl}" alt="${eachCharacter.name}"/>
@@ -86,7 +88,8 @@ function renderFavouriteCards (list) {
   </div>`;
 
   }
-  return html;
+  favourites.innerHTML = html;
+  /*return html;*/
 }
 
 

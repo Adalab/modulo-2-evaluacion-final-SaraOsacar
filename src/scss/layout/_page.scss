@@ -33,7 +33,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 150px;
+    gap: 50px;
 
     &--listCharacters {
       width: 50vw;
@@ -45,6 +45,12 @@
       }
       &--list {
         list-style: none;
+        display: flex;
+        flex-wrap: wrap; /*para que aparezcan varios personajes en una misma línea*/
+        gap: 30px;
+        border: solid black 1px;
+        
+        
       }
     }
     &--listFavourites {
@@ -52,7 +58,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      width: 50vw;
+      /*width: 50vw;*/
       &--title {
         color: rgb(4, 4, 105);
         margin-bottom: 50px;
@@ -61,7 +67,17 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        border: solid black 1px;
+        
       }
     }
+  }
+  .characters-div {
+    background-color: rgb(241, 152, 35);
+    padding: 2px;
+    
+  }
+  .imgCharacters {
+    
   }
 }
