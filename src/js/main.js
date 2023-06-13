@@ -3,8 +3,6 @@
 // Query Selector
 const charactersList = document.querySelector('.js_listCharacters');
 const urlCharacters = `https://api.disneyapi.dev/character?pageSize=50`;
-const input = document.querySelector('.js_descSearch');
-const btnSearch = document.querySelector('.js_btnSearch');
 const favourites = document.querySelector('.js_listFavourites');
 
 let listCharactersData = [];
@@ -62,7 +60,6 @@ function renderOneCharacter(dataCharacter) {
             </li>`;
 
   return html;
- 
 }
 
 //4. Generar el evento en cada character
@@ -83,7 +80,7 @@ function renderFavouriteCards (list) {
     html += `<div class="characters-div">
   <div class="characters js_favourite-card" id="${eachCharacter._id}">
   <p class="names"> Name:${eachCharacter.name}</p>
-  <img src="${eachCharacter.imageUrl}" alt="${eachCharacter.name}"/>
+  <img src="${eachCharacter.imageUrl}" alt="${eachCharacter.name}" class="imgFavourites"/> 
   </div>
   </div>`;
 
@@ -114,7 +111,6 @@ function handleClick(event) {
   // 7. Guardar a los seleccionados favoritos en el LocalStorage y que se mantengan al reiniciar página. Al inicio creo constante y función
   renderFavouriteCards(listFavouritesCharacters);
   localStorage.setItem('charactersFavourites', JSON.stringify(listFavouritesCharacters));
-
 }
 
 

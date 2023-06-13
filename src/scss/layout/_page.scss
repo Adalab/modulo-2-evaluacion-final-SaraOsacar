@@ -50,8 +50,10 @@
         gap: 30px;
         border: solid blue 1px;
         background-color: rgb(240, 233, 219);
-        
-        
+        padding-left: 35px;
+        padding-right: 20px;
+        padding-top: 25px;
+        padding-bottom: 25px;
       }
     }
     &--listFavourites {
@@ -69,17 +71,21 @@
         flex-direction: column;
         justify-content: center;
         border: solid blue 1px;
-       
-        
       }
     }
   }
   .characters-div {
     background-color: rgb(241, 152, 35);
-    padding: 2px;
-    
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
+  /*igualo altura en img de favoritos y characters*/
   .imgCharacters {
     height: 150px;
+  }
+  .imgFavourites {
+    height: 125px;
   }
 }
