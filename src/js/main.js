@@ -4,6 +4,7 @@
 const charactersList = document.querySelector('.js_listCharacters');
 const urlCharacters = `https://api.disneyapi.dev/character?pageSize=50`;
 const favourites = document.querySelector('.js_listFavourites');
+const btnLog = document.querySelector('.js_log');
 
 let listCharactersData = [];
 let listFavouritesCharacters = [];
@@ -51,13 +52,21 @@ function renderOneCharacter(dataCharacter) {
   if (cardImg === ''){
     cardImg = defaultImg;
   }
-
+  /*if (dataCharacter.tvShows.length >3) {
+    innerHTML. = "Es popular";
+    
+  }*/
   let html = `<li class="cardEachCharacter" id="${dataCharacter._id}"> 
                 <article>
                 <img src="${cardImg}" alt="${dataCharacter.name}" class="imgCharacters"/>
                 <p js_name">${dataCharacter.name}</p>
+                <p js_tvShows">${dataCharacter.tvShows.length}</p>
                 </article>
+                <p 
             </li>`;
+            
+              
+            
 
   return html;
 }
@@ -114,4 +123,18 @@ function handleClick(event) {
 }
 
 
+//función
+function handleclickLog (event) {
+  event.preventDefault();
+  for (const favCharacter of listFavouritesCharacters){
+    console.log(favCharacter.name);
+  }
 
+
+}
+
+
+
+//Evento
+
+btnLog.addEventListener('click', handleclickLog);
